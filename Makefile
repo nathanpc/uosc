@@ -1,7 +1,7 @@
 CXX = clang++
 CXXFLAGS = -Wall -std=c++11 $(shell sdl2-config --cflags) $(shell pkg-config SDL2_image --cflags)
 LDFLAGS = $(shell sdl2-config --libs) $(shell pkg-config SDL2_image --libs)
-OBJ = src/main.o src/graphics.o src/texture_manager.o src/game_console.o
+OBJ = src/main.o src/graphics.o src/texture_manager.o src/game_console.o src/input_handler.o
 PREFIX = /usr/bin
 NAME = uosc
 

@@ -25,6 +25,7 @@ GameConsole::GameConsole(SDL_Renderer *renderer) {
 	m_width = 100;
 	m_height = 100;
 	m_ypos = (WindowProperty::height / 3.5) - (m_height / 2);
+	m_selected = 0;
 }
 
 bool GameConsole::add(string id) {
@@ -57,15 +58,33 @@ void GameConsole::draw() {
 	const unsigned int spacing = WindowProperty::width / 3;
 	unsigned int midpoint = (spacing / 2) - (m_width / 2);
 
-	// If there's only 2 icons to be displayed make some space to center the selected one.
-	if (max_icons % 2 == 0) {
-		x += spacing;
-	}
+	// Center the selected item.
+	x -= spacing * (m_selected - 1);
 
 	// Icon loop.
-	for (unsigned int i = 0; i < max_icons; ++i) {
+	for (unsigned int i = 0; i < m_vIDs.size(); ++i) {//max_icons; ++i) {
 		m_pTextureManager->draw(m_vIDs[i], x + midpoint, m_ypos, m_width, m_height);
-		
+
 		x += spacing;
 	}
+}
+
+void GameConsole::previous() {
+	if (m_selected > 0) {
+		m_selected--;
+	}
+
+	#ifdef DEBUG
+	cout << "Console selected: " << m_vIDs[m_selected] << endl;
+	#endif
+}
+
+void GameConsole::next() {
+	if (m_selected < (m_vIDs.size() - 1)) {
+		m_selected++;
+	}
+
+	#ifdef DEBUG
+	cout << "Console selected: " << m_vIDs[m_selected] << endl;
+	#endif
 }

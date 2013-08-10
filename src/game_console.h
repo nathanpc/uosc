@@ -19,6 +19,7 @@ class GameConsole {
 		TextureManager *m_pTextureManager;
 		std::map<std::string, std::map<std::string, std::string> > m_mConsoles;
 		std::vector<std::string> m_vIDs;
+		unsigned int m_selected;
 
 		unsigned int m_ypos;
 		unsigned int m_width;
@@ -29,6 +30,9 @@ class GameConsole {
 
 		bool add(std::string id);
 		void draw();
+
+		void previous();
+		void next();
 };
 
 #endif

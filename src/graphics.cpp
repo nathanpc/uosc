@@ -70,6 +70,9 @@ bool Graphics::init(const char *title, int x, int y, int width, int height, int 
 	if (!m_pGameConsole->add("psone")) {
 		return false;
 	}
+	if (!m_pGameConsole->add("dos")) {
+		return false;
+	}
 
 	return true;
 }
@@ -92,6 +95,10 @@ void Graphics::handle_events() {
 		switch (event.type) {
 			case SDL_QUIT:
 				g_bRunning = false;
+			break;
+
+			case SDL_KEYDOWN:
+				m_pGameConsole->next();
 			break;
 
 			default:
