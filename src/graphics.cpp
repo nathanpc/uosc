@@ -61,10 +61,13 @@ bool Graphics::init(const char *title, int x, int y, int width, int height, int 
 		return false;
 	}
 
-	if (!m_pGameConsole->add("test")) {
+	if (!m_pGameConsole->add("gameboy")) {
 		return false;
 	}
-	if (!m_pGameConsole->add("test2")) {
+	if (!m_pGameConsole->add("nes")) {
+		return false;
+	}
+	if (!m_pGameConsole->add("psone")) {
 		return false;
 	}
 

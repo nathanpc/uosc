@@ -47,15 +47,20 @@ bool GameConsole::add(string id) {
 
 void GameConsole::draw() {
 	// Set the number of icons to display.
-	unsigned int max_icons = 5;
+	unsigned int max_icons = 3;
 	if (m_vIDs.size() < max_icons) {
 		max_icons = m_vIDs.size();
 	}
 
 	// Some position variables.
 	unsigned int x = 0;
-	const unsigned int spacing = WindowProperty::width / max_icons;
+	const unsigned int spacing = WindowProperty::width / 3;
 	unsigned int midpoint = (spacing / 2) - (m_width / 2);
+
+	// If there's only 2 icons to be displayed make some space to center the selected one.
+	if (max_icons % 2 == 0) {
+		x += spacing;
+	}
 
 	// Icon loop.
 	for (unsigned int i = 0; i < max_icons; ++i) {
