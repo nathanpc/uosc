@@ -61,7 +61,10 @@ bool Graphics::init(const char *title, int x, int y, int width, int height, int 
 		return false;
 	}
 
-	m_pTextureManager->load("test", "assets/test.png");
+	if (!m_pTextureManager->load("test", "assets/test.png")) {
+		cout << "Couldn't load image" << endl;
+		return false;
+	}
 
 	return true;
 }

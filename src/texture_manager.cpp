@@ -20,6 +20,13 @@ TextureManager::TextureManager(SDL_Renderer *renderer) {
 	m_pRenderer = renderer;
 }
 
+/**
+ *  Load a image.
+ *
+ *  @param id The texture ID.
+ *  @param file The image location.
+ *  @return True if everything went fine.
+ */
 bool TextureManager::load(string id, string file) {
 	// Load image.
 	SDL_Surface *temp_surface = IMG_Load(file.c_str());
@@ -41,6 +48,15 @@ bool TextureManager::load(string id, string file) {
 	return false;
 }
 
+/**
+ *  Draws a texture.
+ *
+ *  @param id The texture ID.
+ *  @param x Texture X position.
+ *  @param y Texture Y position.
+ *  @param width Texture width.
+ *  @param height Texture height.
+ */
 void TextureManager::draw(string id, unsigned int x, unsigned int y, unsigned int width, unsigned int height) {
 	SDL_Rect source;
 	SDL_Rect destination;
