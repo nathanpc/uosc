@@ -1,7 +1,7 @@
 CXX = clang++
 CXXFLAGS = -Wall $(shell sdl2-config --cflags)
 LDFLAGS = $(shell sdl2-config --libs)
-OBJ = src/main.o
+OBJ = src/main.o src/graphics.o
 PREFIX = /usr/bin
 NAME = uosc
 
