@@ -11,10 +11,14 @@
 #include <vector>
 #include <SDL.h>
 
+#include "texture_manager.h"
+
 class Graphics {
 	private:
 		SDL_Window *m_pWindow;
 		SDL_Renderer *m_pRenderer;
+
+		TextureManager m_textureManager;
 
 	public:
 		bool g_bRunning;

@@ -9,6 +9,7 @@
 #include <SDL.h>
 
 #include "graphics.h"
+#include "texture_manager.h"
 using namespace std;
 
 /**
@@ -57,6 +58,8 @@ bool Graphics::init(const char *title, int x, int y, int width, int height, int 
 		return false;
 	}
 
+	m_textureManager.load("test", "assets/test.png", m_pRenderer);
+
 	return true;
 }
 
@@ -92,6 +95,8 @@ void Graphics::handle_events() {
 void Graphics::render() {
 	// Clear window.
 	SDL_RenderClear(m_pRenderer);
+
+	m_textureManager.draw("test", 100, 100, 100, 100, m_pRenderer);
 
 	// Show the window.
 	SDL_RenderPresent(m_pRenderer);
