@@ -11,10 +11,8 @@
 #include <SDL.h>
 
 #include "graphics.h"
+#include "window_properties.h"
 using namespace std;
-
-#define FPS        60
-#define DELAY_TIME 1000.0f / FPS
 
 Graphics *g_graphics = 0;
 
@@ -34,7 +32,8 @@ int main(int argc, char *argv[]) {
 	g_graphics->g_bRunning = g_graphics->init("The Ultimate Old School Console",
 											  SDL_WINDOWPOS_CENTERED,
 											  SDL_WINDOWPOS_CENTERED,
-											  640, 480,
+											  WindowProperty::width,
+											  WindowProperty::height,
 											  SDL_WINDOW_SHOWN);
 
 	// Check if the initialization was successful.
@@ -52,8 +51,8 @@ int main(int argc, char *argv[]) {
 		g_graphics->render();
 
 		frame_time = SDL_GetTicks() - frame_start;
-		if (frame_time < DELAY_TIME) {
-			SDL_Delay((int)(DELAY_TIME - frame_time));
+		if (frame_time < WindowProperty::DELAY_TIME) {
+			SDL_Delay((int)(WindowProperty::DELAY_TIME - frame_time));
 		}
 	}
 
