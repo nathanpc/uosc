@@ -21,7 +21,7 @@ class TextureManager {
 		TextureManager(SDL_Renderer *renderer);
 
 		bool load(std::string id, std::string file);
-		void draw(std::string id, unsigned int x, unsigned int y, unsigned int width, unsigned int height);
+		void draw(std::string id, int x, int y, unsigned int width, unsigned int height);
 };
 
 #endif

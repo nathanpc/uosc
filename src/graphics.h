@@ -11,13 +11,13 @@
 #include <vector>
 #include <SDL.h>
 
-#include "texture_manager.h"
+#include "game_console.h"
 
 class Graphics {
 	private:
 		SDL_Window *m_pWindow;
 		SDL_Renderer *m_pRenderer;
-		TextureManager *m_pTextureManager;
+		GameConsole *m_pGameConsole;
 
 	public:
 		bool g_bRunning;

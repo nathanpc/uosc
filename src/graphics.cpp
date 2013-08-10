@@ -9,7 +9,7 @@
 #include <SDL.h>
 
 #include "graphics.h"
-#include "texture_manager.h"
+#include "game_console.h"
 using namespace std;
 
 /**
@@ -18,7 +18,7 @@ using namespace std;
 Graphics::Graphics() {
 	m_pWindow = 0;
 	m_pRenderer = 0;
-	m_pTextureManager = 0;
+	m_pGameConsole = 0;
 
 	g_bRunning = false;
 }
@@ -51,7 +51,7 @@ bool Graphics::init(const char *title, int x, int y, int width, int height, int 
 		// Create the renderer.
 		if (m_pWindow != 0) {
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
-			m_pTextureManager = new TextureManager(m_pRenderer);
+			m_pGameConsole = new GameConsole(m_pRenderer);
 		} else {
 			cout << "Couldn't create the SDL window: " << m_pWindow << endl;
 			return false;
@@ -61,8 +61,10 @@ bool Graphics::init(const char *title, int x, int y, int width, int height, int 
 		return false;
 	}
 
-	if (!m_pTextureManager->load("test", "assets/test.png")) {
-		cout << "Couldn't load image" << endl;
+	if (!m_pGameConsole->add("test")) {
+		return false;
+	}
+	if (!m_pGameConsole->add("test2")) {
 		return false;
 	}
 
@@ -102,7 +104,7 @@ void Graphics::render() {
 	// Clear window.
 	SDL_RenderClear(m_pRenderer);
 
-	m_pTextureManager->draw("test", 100, 100, 100, 100);
+	m_pGameConsole->draw();
 
 	// Show the window.
 	SDL_RenderPresent(m_pRenderer);
