@@ -17,8 +17,7 @@ class Graphics {
 	private:
 		SDL_Window *m_pWindow;
 		SDL_Renderer *m_pRenderer;
-
-		TextureManager m_textureManager;
+		TextureManager *m_pTextureManager;
 
 	public:
 		bool g_bRunning;

@@ -18,6 +18,8 @@ using namespace std;
 Graphics::Graphics() {
 	m_pWindow = 0;
 	m_pRenderer = 0;
+	m_pTextureManager = 0;
+
 	g_bRunning = false;
 }
 
@@ -49,6 +51,7 @@ bool Graphics::init(const char *title, int x, int y, int width, int height, int 
 		// Create the renderer.
 		if (m_pWindow != 0) {
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
+			m_pTextureManager = new TextureManager(m_pRenderer);
 		} else {
 			cout << "Couldn't create the SDL window: " << m_pWindow << endl;
 			return false;
@@ -58,7 +61,7 @@ bool Graphics::init(const char *title, int x, int y, int width, int height, int 
 		return false;
 	}
 
-	m_textureManager.load("test", "assets/test.png", m_pRenderer);
+	m_pTextureManager->load("test", "assets/test.png");
 
 	return true;
 }
@@ -96,7 +99,7 @@ void Graphics::render() {
 	// Clear window.
 	SDL_RenderClear(m_pRenderer);
 
-	m_textureManager.draw("test", 100, 100, 100, 100, m_pRenderer);
+	m_pTextureManager->draw("test", 100, 100, 100, 100);
 
 	// Show the window.
 	SDL_RenderPresent(m_pRenderer);

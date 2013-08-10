@@ -16,10 +16,11 @@ using namespace std;
 /**
  *  Constructor.
  */
-TextureManager::TextureManager() {
+TextureManager::TextureManager(SDL_Renderer *renderer) {
+	m_pRenderer = renderer;
 }
 
-bool TextureManager::load(string id, string file, SDL_Renderer *renderer) {
+bool TextureManager::load(string id, string file) {
 	// Load image.
 	SDL_Surface *temp_surface = IMG_Load(file.c_str());
 	if (temp_surface == 0) {
@@ -28,7 +29,7 @@ bool TextureManager::load(string id, string file, SDL_Renderer *renderer) {
 
 	// Create a texture from the surface.
 	SDL_Texture *texture;
-	texture = SDL_CreateTextureFromSurface(renderer, temp_surface);
+	texture = SDL_CreateTextureFromSurface(m_pRenderer, temp_surface);
 	SDL_FreeSurface(temp_surface);
 
 	// Check if everything went fine.
@@ -40,7 +41,7 @@ bool TextureManager::load(string id, string file, SDL_Renderer *renderer) {
 	return false;
 }
 
-void TextureManager::draw(string id, unsigned int x, unsigned int y, unsigned int width, unsigned int height, SDL_Renderer *renderer) {
+void TextureManager::draw(string id, unsigned int x, unsigned int y, unsigned int width, unsigned int height) {
 	SDL_Rect source;
 	SDL_Rect destination;
 
@@ -56,5 +57,5 @@ void TextureManager::draw(string id, unsigned int x, unsigned int y, unsigned in
 	destination.h = height;
 
 	// Copy the texture to the render buffer.
-	SDL_RenderCopy(renderer, m_mTextures[id], &source, &destination);
+	SDL_RenderCopy(m_pRenderer, m_mTextures[id], &source, &destination);
 }
