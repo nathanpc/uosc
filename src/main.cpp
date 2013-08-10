@@ -7,11 +7,14 @@
 
 #include <iostream>
 #include <string>
+#include <cstdint>
 #include <SDL.h>
 
 #include "graphics.h"
-
 using namespace std;
+
+#define FPS        60
+#define DELAY_TIME 1000.0f / FPS
 
 Graphics *g_graphics = 0;
 
@@ -23,6 +26,9 @@ Graphics *g_graphics = 0;
  *  @return Exit code.
  */
 int main(int argc, char *argv[]) {
+	// Setup our FPS limiting variables.
+	uint32_t frame_start, frame_time;
+
 	// Initialize SDL.
 	g_graphics = new Graphics();
 	g_graphics->g_bRunning = g_graphics->init("The Ultimate Old School Console",
@@ -38,9 +44,17 @@ int main(int argc, char *argv[]) {
 
 	// Render loop.
 	while (g_graphics->g_bRunning) {
+		frame_start = SDL_GetTicks();
+
+		// Main loop.
 		g_graphics->handle_events();
 		g_graphics->update();
 		g_graphics->render();
+
+		frame_time = SDL_GetTicks() - frame_start;
+		if (frame_time < DELAY_TIME) {
+			SDL_Delay((int)(DELAY_TIME - frame_time));
+		}
 	}
 
 	g_graphics->clean();
