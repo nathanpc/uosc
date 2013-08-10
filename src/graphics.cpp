@@ -1,5 +1,6 @@
 /**
  *  graphics.cpp
+ *  Interacts with SDL.
  *
  *  @author Nathan Campos <nathanpc@dreamintech.net>
  */
@@ -10,6 +11,7 @@
 
 #include "graphics.h"
 #include "game_console.h"
+#include "input_handler.h"
 using namespace std;
 
 /**
@@ -19,6 +21,7 @@ Graphics::Graphics() {
 	m_pWindow = 0;
 	m_pRenderer = 0;
 	m_pGameConsole = 0;
+	m_pInputHandler = 0;
 
 	g_bRunning = false;
 }
@@ -56,6 +59,9 @@ bool Graphics::init(const char *title, int x, int y, int width, int height, int 
 			cout << "Couldn't create the SDL window: " << m_pWindow << endl;
 			return false;
 		}
+
+		// Initialize input handler.
+		m_pInputHandler = new InputHandler(m_pGameConsole);
 	} else {
 		cout << "There was an error while trying to initialize SDL: " << sdl_init_status << endl;
 		return false;
@@ -89,22 +95,7 @@ void Graphics::update() {
  *  Handles events.
  */
 void Graphics::handle_events() {
-	SDL_Event event;
-
-	if (SDL_PollEvent(&event)) {
-		switch (event.type) {
-			case SDL_QUIT:
-				g_bRunning = false;
-			break;
-
-			case SDL_KEYDOWN:
-				m_pGameConsole->next();
-			break;
-
-			default:
-			break;
-		}
-	}
+	g_bRunning = m_pInputHandler->update();
 }
 
 /**

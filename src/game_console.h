@@ -1,5 +1,6 @@
 /**
  *  game_console.h
+ *  Handles the game console "collumns" in the interface.
  *
  *  @author Nathan Campos <nathanpc@dreamintech.net>
  */

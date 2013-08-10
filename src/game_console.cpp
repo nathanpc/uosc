@@ -1,5 +1,6 @@
 /**
  *  game_console.cpp
+ *  Handles the game console "collumns" in the interface.
  *
  *  @author Nathan Campos <nathanpc@dreamintech.net>
  */
@@ -28,6 +29,12 @@ GameConsole::GameConsole(SDL_Renderer *renderer) {
 	m_selected = 0;
 }
 
+/**
+ *  Adds a game console.
+ *
+ *  @param id Game console ID.
+ *  @return True if everything works fine.
+ */
 bool GameConsole::add(string id) {
 	// Prepare the console properties map.
 	map<string, string> console;
@@ -46,6 +53,9 @@ bool GameConsole::add(string id) {
 	return true;
 }
 
+/**
+ *  Draws the game consoles in the screen.
+ */
 void GameConsole::draw() {
 	// Set the number of icons to display.
 	unsigned int max_icons = 3;
@@ -69,6 +79,9 @@ void GameConsole::draw() {
 	}
 }
 
+/**
+ *  Select the previous game console.
+ */
 void GameConsole::previous() {
 	if (m_selected > 0) {
 		m_selected--;
@@ -79,6 +92,9 @@ void GameConsole::previous() {
 	#endif
 }
 
+/**
+ *  Select the next game console.
+ */
 void GameConsole::next() {
 	if (m_selected < (m_vIDs.size() - 1)) {
 		m_selected++;

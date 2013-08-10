@@ -1,5 +1,6 @@
 /**
  *  graphics.h
+ *  Interacts with SDL.
  *
  *  @author Nathan Campos <nathanpc@dreamintech.net>
  */
@@ -12,12 +13,14 @@
 #include <SDL.h>
 
 #include "game_console.h"
+#include "input_handler.h"
 
 class Graphics {
 	private:
 		SDL_Window *m_pWindow;
 		SDL_Renderer *m_pRenderer;
 		GameConsole *m_pGameConsole;
+		InputHandler *m_pInputHandler;
 
 	public:
 		bool g_bRunning;
