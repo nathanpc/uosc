@@ -16,11 +16,6 @@
 #include "window_properties.h"
 using namespace std;
 
-
-// FIXME: There's a huge memory leak somewhere in this class.
-
-
-
 /**
  *  Constructor.
  */
@@ -97,4 +92,5 @@ void Text::print(string text, SDL_Color color, int x, int y, bool center) {
 
 	// Copy the texture to the render buffer.
 	SDL_RenderCopy(m_pRenderer, text_texture, &source, &destination);
+	SDL_DestroyTexture(text_texture);
 }
