@@ -13,6 +13,7 @@
 #include <SDL.h>
 
 #include "game_console.h"
+#include "games.h"
 #include "input_handler.h"
 
 class Graphics {
@@ -20,6 +21,7 @@ class Graphics {
 		SDL_Window *m_pWindow;
 		SDL_Renderer *m_pRenderer;
 		GameConsole *m_pGameConsole;
+		Games *m_pGames;
 		InputHandler *m_pInputHandler;
 
 	public:

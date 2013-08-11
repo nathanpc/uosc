@@ -13,14 +13,16 @@
 
 #include "input_handler.h"
 #include "game_console.h"
+#include "games.h"
 #include "window_properties.h"
 using namespace std;
 
 /**
  *  Constructor.
  */
-InputHandler::InputHandler(GameConsole *game_console) {
+InputHandler::InputHandler(GameConsole *game_console, Games *games) {
 	m_pGameConsole = game_console;
+	m_pGames = games;
 }
 
 bool InputHandler::update() {
@@ -62,5 +64,9 @@ void InputHandler::on_key_down() {
 		m_pGameConsole->previous();
 	} else if (is_key_down(SDL_SCANCODE_RIGHT)) {
 		m_pGameConsole->next();
+	} else if (is_key_down(SDL_SCANCODE_UP)) {
+		m_pGames->previous();
+	} else if (is_key_down(SDL_SCANCODE_DOWN)) {
+		m_pGames->next();
 	}
 }

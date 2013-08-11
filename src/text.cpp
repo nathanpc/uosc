@@ -13,6 +13,7 @@
 #include <SDL_ttf.h>
 
 #include "text.h"
+#include "window_properties.h"
 using namespace std;
 
 /**
@@ -47,7 +48,7 @@ Text::Text(string font_name, unsigned int font_size, SDL_Renderer *renderer) {
  *  @param width Texture width.
  *  @param height Texture height.
  */
-void Text::print(string text, SDL_Color color, int x, int y) {
+void Text::print(string text, SDL_Color color, int x, int y, bool center) {
 	SDL_Rect source;
 	SDL_Rect destination;
 	SDL_Surface *text_surface;
@@ -71,10 +72,15 @@ void Text::print(string text, SDL_Color color, int x, int y) {
 	// Set the positions and sizes for everything.
 	source.x = 0;
 	source.y = 0;
-	destination.x = x;
 	destination.y = y;
 	destination.w = source.w;
 	destination.h = source.h;
+
+	if (center) {
+		destination.x = (WindowProperty::width / 2) - (source.w / 2);
+	} else {
+		destination.x = x;
+	}
 
 	// Copy the texture to the render buffer.
 	SDL_RenderCopy(m_pRenderer, text_texture, &source, &destination);

@@ -11,6 +11,7 @@
 
 #include "graphics.h"
 #include "game_console.h"
+#include "games.h"
 #include "input_handler.h"
 using namespace std;
 
@@ -21,6 +22,7 @@ Graphics::Graphics() {
 	m_pWindow = 0;
 	m_pRenderer = 0;
 	m_pGameConsole = 0;
+	m_pGames = 0;
 	m_pInputHandler = 0;
 
 	g_bRunning = false;
@@ -55,13 +57,14 @@ bool Graphics::init(const char *title, int x, int y, int width, int height, int 
 		if (m_pWindow != 0) {
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
 			m_pGameConsole = new GameConsole(m_pRenderer);
+			m_pGames = new Games(m_pRenderer);
 		} else {
 			cout << "Couldn't create the SDL window: " << m_pWindow << endl;
 			return false;
 		}
 
 		// Initialize input handler.
-		m_pInputHandler = new InputHandler(m_pGameConsole);
+		m_pInputHandler = new InputHandler(m_pGameConsole, m_pGames);
 	} else {
 		cout << "There was an error while trying to initialize SDL: " << sdl_init_status << endl;
 		return false;
@@ -107,6 +110,9 @@ void Graphics::render() {
 
 	// Draw the collumns.
 	m_pGameConsole->draw();
+
+	// Draw the rows.
+	m_pGames->draw();
 
 	// Show the window.
 	SDL_RenderPresent(m_pRenderer);

@@ -15,14 +15,16 @@
 #include <SDL.h>
 
 #include "game_console.h"
+#include "games.h"
 
 class InputHandler {
 	private:
 		GameConsole *m_pGameConsole;
+		Games *m_pGames;
 		const uint8_t *m_keystates;
 
 	public:
-		InputHandler(GameConsole *game_console);
+		InputHandler(GameConsole *game_console, Games *games);
 
 		bool update();
 
