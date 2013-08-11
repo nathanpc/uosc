@@ -16,6 +16,11 @@
 #include "window_properties.h"
 using namespace std;
 
+
+// FIXME: There's a huge memory leak somewhere in this class.
+
+
+
 /**
  *  Constructor.
  */
@@ -34,9 +39,16 @@ Text::Text(string font_name, unsigned int font_size, SDL_Renderer *renderer) {
 	if (m_pFont == NULL) {
 		cout << "TTF_OpenFont() failed: " << TTF_GetError() << endl;
 		TTF_Quit();
-		SDL_Quit();
 		exit(1);
 	}
+}
+
+/**
+ *  Destructor.
+ */
+Text::~Text() {
+	TTF_CloseFont(m_pFont);
+	TTF_Quit();
 }
 
 /**
@@ -65,6 +77,7 @@ void Text::print(string text, SDL_Color color, int x, int y, bool center) {
 
 	// Convert from surface to texture.
 	text_texture = SDL_CreateTextureFromSurface(m_pRenderer, text_surface);
+	SDL_FreeSurface(text_surface);
 
 	// Get the text size for the source rectangle.
 	SDL_QueryTexture(text_texture, NULL, NULL, &source.w, &source.h);
@@ -84,7 +97,4 @@ void Text::print(string text, SDL_Color color, int x, int y, bool center) {
 
 	// Copy the texture to the render buffer.
 	SDL_RenderCopy(m_pRenderer, text_texture, &source, &destination);
-
-	// Free things up.
-	SDL_FreeSurface(text_surface);
 }

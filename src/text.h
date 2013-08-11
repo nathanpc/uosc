@@ -19,6 +19,7 @@ class Text {
 
 	public:
 		Text(std::string font_name, unsigned int font_size, SDL_Renderer *renderer);
+		~Text();
 
 		void print(std::string text, SDL_Color color, int x, int y, bool center);
 };

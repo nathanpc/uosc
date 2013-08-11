@@ -61,9 +61,6 @@ void TextureManager::draw(string id, int x, int y, unsigned int width, unsigned 
 	SDL_Rect source;
 	SDL_Rect destination;
 
-	// TODO: If ((x < 0) || (y < 0))
-	// TODO: Do the same for the > screen_width (or height)
-
 	// Get the texture size for the source rectangle.
 	SDL_QueryTexture(m_mTextures[id], NULL, NULL, &source.w, &source.h);
 
