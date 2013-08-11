@@ -105,6 +105,7 @@ void Graphics::render() {
 	// Clear window.
 	SDL_RenderClear(m_pRenderer);
 
+	// Draw the collumns.
 	m_pGameConsole->draw();
 
 	// Show the window.
