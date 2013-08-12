@@ -25,6 +25,7 @@ class Games {
 
 		unsigned int m_ypos;
 		unsigned int m_height;
+		unsigned int y;
 
 	public:
 		Games(SDL_Renderer *renderer);

@@ -27,6 +27,7 @@ Games::Games(SDL_Renderer *renderer) {
 	m_height = 100;
 	m_ypos = (WindowProperty::height / 3.5) + 50;
 	m_selected = 0;
+	y = m_ypos;
 }
 
 /**
@@ -51,16 +52,21 @@ bool Games::add(string console, string emulator, vector<string> games) {
  */
 void Games::draw(string console) {
 	// Some position variables.
-	unsigned int y = m_ypos;
+	//unsigned int y = m_ypos;
 	const unsigned int spacing = 35;
 	//unsigned int midpoint = (spacing / 2) - (m_width / 2);
 	SDL_Color color = {255, 255, 255};
 
-	// Center the selected item.
-	y -= spacing * m_selected;
-
 	// List loop.
 	for (size_t i = 0; i < m_mGames[console].size(); ++i) {
+		// Animate up and down.
+		if (y + (spacing * m_selected) > m_ypos) {
+			y -= 5;
+		} else if (y + (spacing * m_selected) < m_ypos) {
+			y += 5;
+		}
+
+		// TODO: Make the top one fade instead of just vanishing.
 		if (i >= m_selected) {
 			// Get only the name from the path.
 			string title = m_mGames[console][i];
@@ -68,10 +74,8 @@ void Games::draw(string console) {
 			title = title.substr(0, title.find_last_of("."));
 
 			// Print.
-			m_pText->print(title, color, 0, y, true);
+			m_pText->print(title, color, 0, y + (spacing * i), true);
 		}
-
-		y += spacing;
 	}
 }
 
