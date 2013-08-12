@@ -14,6 +14,7 @@
 #include <SDL.h>
 
 #include "texture_manager.h"
+#include "games.h"
 
 class GameConsole {
 	private:
@@ -32,8 +33,8 @@ class GameConsole {
 		bool add(std::string id, std::string logo);
 		void draw();
 
-		void previous();
-		void next();
+		void previous(Games *games);
+		void next(Games *games);
 
 		std::string get_selected_id();
 };

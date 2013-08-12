@@ -62,10 +62,10 @@ bool InputHandler::is_key_down(SDL_Scancode key) {
 void InputHandler::on_key_down() {
 	if (is_key_down(SDL_SCANCODE_LEFT)) {
 		// Left
-		m_pGameConsole->previous();
+		m_pGameConsole->previous(m_pGames);
 	} else if (is_key_down(SDL_SCANCODE_RIGHT)) {
 		// Right
-		m_pGameConsole->next();
+		m_pGameConsole->next(m_pGames);
 	} else if (is_key_down(SDL_SCANCODE_UP)) {
 		// Up
 		m_pGames->previous();

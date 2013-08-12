@@ -109,7 +109,8 @@ bool Graphics::populate_values() {
 						string path = dir_itr->path().c_str();
 
 						// Ignore files with extensions listed in the config.
-						if (path.find(it->second["ignore"]) == string::npos) {
+						if (it->second["ignore"] == "" ||
+							path.find(it->second["ignore"]) == string::npos) {
 							games.push_back(path);
 						}
 					}

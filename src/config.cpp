@@ -32,7 +32,9 @@ map<string, map<string, string> > Config::emulators() {
 		tmp_emu["icon"] = emulator["icon"].as<string>();
 		tmp_emu["exec"] = emulator["exec"].as<string>();
 		tmp_emu["roms"] = emulator["roms"].as<string>();
-		tmp_emu["ignore"] = emulator["ignore_ext"].as<string>();
+		if (emulator["ignore_ext"]) {
+			tmp_emu["ignore"] = emulator["ignore_ext"].as<string>();
+		}
 
 		// Populate the final map.
 		emulators[emulator["id"].as<string>()] = tmp_emu;

@@ -102,6 +102,13 @@ void Games::next(string console) {
 }
 
 /**
+ *  Reset the selected item (used when changing consoles).
+ */
+void Games::reset_selected() {
+	m_selected = 0;
+}
+
+/**
  *  Start playing!
  *
  *  @param console The console ID.

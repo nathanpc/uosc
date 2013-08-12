@@ -12,6 +12,7 @@
 
 #include "texture_manager.h"
 #include "game_console.h"
+#include "games.h"
 #include "window_properties.h"
 using namespace std;
 
@@ -82,9 +83,10 @@ void GameConsole::draw() {
 /**
  *  Select the previous game console.
  */
-void GameConsole::previous() {
+void GameConsole::previous(Games *games) {
 	if (m_selected > 0) {
 		m_selected--;
+		games->reset_selected();
 	}
 
 	#ifdef DEBUG
@@ -95,9 +97,10 @@ void GameConsole::previous() {
 /**
  *  Select the next game console.
  */
-void GameConsole::next() {
+void GameConsole::next(Games *games) {
 	if (m_selected < (m_vIDs.size() - 1)) {
 		m_selected++;
+		games->reset_selected();
 	}
 
 	#ifdef DEBUG

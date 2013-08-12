@@ -7,5 +7,10 @@ emulators:
     exec: "vba {rom}"
     roms: "/home/nathanpc/ROMs/GameBoy/"
     ignore_ext: ".sav"
+  - id: genesis
+    name: Sega Genesis
+    icon: "assets/psone.png"
+    exec: "dgen {rom}"
+    roms: "/home/nathanpc/ROMs/Genesis/"
 
 ...

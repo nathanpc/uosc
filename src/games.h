@@ -34,6 +34,7 @@ class Games {
 
 		void previous();
 		void next(std::string console);
+		void reset_selected();
 
 		void execute(std::string console);
 };
