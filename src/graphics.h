@@ -15,6 +15,7 @@
 #include "game_console.h"
 #include "games.h"
 #include "input_handler.h"
+#include "config.h"
 
 class Graphics {
 	private:
@@ -23,6 +24,7 @@ class Graphics {
 		GameConsole *m_pGameConsole;
 		Games *m_pGames;
 		InputHandler *m_pInputHandler;
+		Config *m_pConfig;
 
 	public:
 		bool g_bRunning;
@@ -32,10 +34,11 @@ class Graphics {
 
 		bool init(const char *title, int x, int y, int width, int height, int flags);
 
+		bool populate_values();
+
 		void update();
 		void handle_events();
 		void render();
-
 		void clean();
 };
 

@@ -35,10 +35,10 @@ GameConsole::GameConsole(SDL_Renderer *renderer) {
  *  @param id Game console ID.
  *  @return True if everything works fine.
  */
-bool GameConsole::add(string id) {
+bool GameConsole::add(string id, string logo) {
 	// Prepare the console properties map.
 	map<string, string> console;
-	console["filename"] = "assets/" + id + ".png";
+	console["filename"] = logo;
 
 	// Add.
 	m_mConsoles[id] = console;
@@ -72,7 +72,7 @@ void GameConsole::draw() {
 	x -= spacing * (m_selected - 1);
 
 	// Icon loop.
-	for (unsigned int i = 0; i < m_vIDs.size(); ++i) {//max_icons; ++i) {
+	for (size_t i = 0; i < m_vIDs.size(); ++i) {//max_icons; ++i) {
 		m_pTextureManager->draw(m_vIDs[i], x + midpoint, m_ypos, m_width, m_height);
 
 		x += spacing;
@@ -103,4 +103,11 @@ void GameConsole::next() {
 	#ifdef DEBUG
 	cout << "Console selected: " << m_vIDs[m_selected] << endl;
 	#endif
+}
+
+/**
+ *  Gets the ID of the currently selected game console.
+ */
+string GameConsole::get_selected_id() {
+	return m_vIDs[m_selected];
 }

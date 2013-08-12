@@ -18,7 +18,8 @@
 class Games {
 	private:
 		Text *m_pText;
-		std::map<std::string, std::map<std::string, std::string> > m_mGames;
+		std::map<std::string, std::vector<std::string> > m_mGames;
+		std::map<std::string, std::string> m_mEmulators;
 		std::vector<std::string> m_vConsoles;
 		unsigned int m_selected;
 
@@ -28,11 +29,13 @@ class Games {
 	public:
 		Games(SDL_Renderer *renderer);
 
-		bool add(std::string console, std::map<std::string, std::string> games);
-		void draw();
+		bool add(std::string console, std::string emulator, std::vector<std::string> games);
+		void draw(std::string console);
 
 		void previous();
-		void next();
+		void next(std::string console);
+
+		void execute(std::string console);
 };
 
 #endif

@@ -9,6 +9,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <cstdlib>
 
 #include "games.h"
 #include "text.h"
@@ -32,11 +33,14 @@ Games::Games(SDL_Renderer *renderer) {
  *  Adds a game.
  *
  *  @param id Game console ID.
+ *  @param emulator Emulator command.
+ *  @param games Array with ROMs paths.
  *  @return True if everything works fine.
  */
-bool Games::add(string console, map<string, string> games) {
+bool Games::add(string console, string emulator, vector<string> games) {
 	// Add.
 	m_mGames[console] = games;
+	m_mEmulators[console] = emulator;
 	m_vConsoles.push_back(console);
 
 	return true;
@@ -45,7 +49,7 @@ bool Games::add(string console, map<string, string> games) {
 /**
  *  Draws the games in the screen.
  */
-void Games::draw() {
+void Games::draw(string console) {
 	// Some position variables.
 	unsigned int y = m_ypos;
 	const unsigned int spacing = 35;
@@ -55,10 +59,16 @@ void Games::draw() {
 	// Center the selected item.
 	y -= spacing * m_selected;
 
-	// Icon loop.
-	for (unsigned int i = 0; i < 7; ++i) {
+	// List loop.
+	for (size_t i = 0; i < m_mGames[console].size(); ++i) {
 		if (i >= m_selected) {
-			m_pText->print("Testing", color, 0, y, true);
+			// Get only the name from the path.
+			string title = m_mGames[console][i];
+			title = title.substr(title.find_last_of("/") + 1);
+			title = title.substr(0, title.find_last_of("."));
+
+			// Print.
+			m_pText->print(title, color, 0, y, true);
 		}
 
 		y += spacing;
@@ -81,12 +91,28 @@ void Games::previous() {
 /**
  *  Select the next game.
  */
-void Games::next() {
-	if (m_selected < 6) {//(m_vIDs.size() - 1)) {
+void Games::next(string console) {
+	if (m_selected < m_mGames[console].size() - 1) {
 		m_selected++;
 	}
 
 	#ifdef DEBUG
-	cout << "Console selected: " << m_vIDs[m_selected] << endl;
+	cout << "Game selected: " << m_mGames[console][m_selected] << endl;
 	#endif
+}
+
+/**
+ *  Start playing!
+ *
+ *  @param console The console ID.
+ */
+void Games::execute(string console) {
+	// Replace {rom} with the ROM path.
+	string command = m_mEmulators[console];
+	command = command.substr(0, command.find("{rom}")) +
+			  "\"" + m_mGames[console][m_selected] + "\"" +
+			  command.substr(command.find("{rom}") + 5);
+
+	cout << command << endl;
+	system(command.c_str());
 }

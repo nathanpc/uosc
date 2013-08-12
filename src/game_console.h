@@ -29,11 +29,13 @@ class GameConsole {
 	public:
 		GameConsole(SDL_Renderer *renderer);
 
-		bool add(std::string id);
+		bool add(std::string id, std::string logo);
 		void draw();
 
 		void previous();
 		void next();
+
+		std::string get_selected_id();
 };
 
 #endif

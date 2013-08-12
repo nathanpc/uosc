@@ -1,0 +1,10 @@
+---
+
+emulators:
+  - id: gba
+    name: GameBoy Advance
+    icon: "assets/gameboy.png"
+    exec: "vba {rom}"
+    roms: "/home/nathanpc/ROMs/GameBoy/"
+
+...

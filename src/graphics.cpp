@@ -7,13 +7,18 @@
 
 #include <iostream>
 #include <string>
+#include <map>
 #include <SDL.h>
+#include <boost/filesystem.hpp>
 
 #include "graphics.h"
 #include "game_console.h"
 #include "games.h"
 #include "input_handler.h"
+#include "config.h"
+
 using namespace std;
+namespace fs = boost::filesystem;
 
 /**
  *  Constructor.
@@ -24,6 +29,7 @@ Graphics::Graphics() {
 	m_pGameConsole = 0;
 	m_pGames = 0;
 	m_pInputHandler = 0;
+	m_pConfig = new Config("config.yml");
 
 	g_bRunning = false;
 }
@@ -70,19 +76,49 @@ bool Graphics::init(const char *title, int x, int y, int width, int height, int 
 		return false;
 	}
 
-	if (!m_pGameConsole->add("gameboy")) {
-		return false;
-	}
-	if (!m_pGameConsole->add("nes")) {
-		return false;
-	}
-	if (!m_pGameConsole->add("psone")) {
-		return false;
-	}
-	if (!m_pGameConsole->add("dos")) {
+	if (!populate_values()) {
 		return false;
 	}
 
+	return true;
+}
+
+/**
+ *  Populates the consoles and games.
+ */
+bool Graphics::populate_values() {
+	map<string, map<string, string> > emulators = m_pConfig->emulators();
+	for (auto it = emulators.begin(); it != emulators.end(); ++it) {
+		// Add game console.
+		if (!m_pGameConsole->add(it->first, it->second["icon"])) {
+			cout << "Error while populating game consoles: (" << it->first << ") " << it->second["icon"] << endl;
+			return false;
+		}
+
+		// Populate games.
+		vector<string> games;
+		fs::directory_iterator end_iter;
+
+		// Iterate through the ROMs directory.
+		for (fs::directory_iterator dir_itr(it->second["roms"]); dir_itr != end_iter; ++dir_itr) {
+			try {
+				// Ignore hidden directories.
+				if (dir_itr->path().filename().c_str()[0] != '.') {
+					// Ignore directories.
+					if (fs::is_regular_file(dir_itr->status())) {
+						games.push_back(string(dir_itr->path().c_str()));
+					}
+				}
+			} catch (const exception &e) {
+				cout << "Error while populating games: " << dir_itr->path().filename() << ": " << e.what() << endl;
+				return false;
+			}
+		}
+
+		// Add games.
+		m_pGames->add(it->first, it->second["exec"], games);
+	}
+	
 	return true;
 }
 
@@ -112,7 +148,7 @@ void Graphics::render() {
 	m_pGameConsole->draw();
 
 	// Draw the rows.
-	m_pGames->draw();
+	m_pGames->draw(m_pGameConsole->get_selected_id());
 
 	// Show the window.
 	SDL_RenderPresent(m_pRenderer);
