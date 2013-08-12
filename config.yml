@@ -6,5 +6,6 @@ emulators:
     icon: "assets/gameboy.png"
     exec: "vba {rom}"
     roms: "/home/nathanpc/ROMs/GameBoy/"
+    ignore_ext: ".sav"
 
 ...

@@ -106,7 +106,12 @@ bool Graphics::populate_values() {
 				if (dir_itr->path().filename().c_str()[0] != '.') {
 					// Ignore directories.
 					if (fs::is_regular_file(dir_itr->status())) {
-						games.push_back(string(dir_itr->path().c_str()));
+						string path = dir_itr->path().c_str();
+
+						// Ignore files with extensions listed in the config.
+						if (path.find(it->second["ignore"]) == string::npos) {
+							games.push_back(path);
+						}
 					}
 				}
 			} catch (const exception &e) {
