@@ -10,6 +10,7 @@
 #include <map>
 #include <vector>
 #include <SDL.h>
+#include <cstdlib>
 
 #include "input_handler.h"
 #include "game_console.h"
@@ -75,5 +76,9 @@ void InputHandler::on_key_down() {
 	} else if (is_key_down(SDL_SCANCODE_RETURN)) {
 		// Enter
 		m_pGames->execute(m_pGameConsole->get_selected_id());
+	} else if (is_key_down(SDL_SCANCODE_ESCAPE)) {
+		// Escape
+		SDL_Quit();
+		exit(0);
 	}
 }
