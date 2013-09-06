@@ -21,7 +21,7 @@ using namespace std;
  */
 Games::Games(SDL_Renderer *renderer) {
 	// Initialize the text stuff.
-	m_pText = new Text("assets/FreeSans.ttf", 24, renderer);
+	m_pText = new Text("assets/Minecraftia.ttf", 20, renderer);
 
 	// Set the defaults.
 	m_height = 100;

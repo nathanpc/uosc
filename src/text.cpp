@@ -36,6 +36,9 @@ Text::Text(string font_name, unsigned int font_size, SDL_Renderer *renderer) {
 		TTF_Quit();
 		exit(1);
 	}
+
+	// Set the font style to bold.
+	TTF_SetFontStyle(m_pFont, TTF_STYLE_BOLD);
 }
 
 /**
