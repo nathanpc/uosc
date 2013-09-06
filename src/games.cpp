@@ -55,7 +55,7 @@ void Games::draw(string console) {
 	//unsigned int y = m_ypos;
 	const unsigned int spacing = 35;
 	//unsigned int midpoint = (spacing / 2) - (m_width / 2);
-	SDL_Color color = {255, 255, 255};
+	SDL_Color color = {30, 30, 30};
 
 	// List loop.
 	for (size_t i = 0; i < m_mGames[console].size(); ++i) {

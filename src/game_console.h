@@ -31,7 +31,7 @@ class GameConsole {
 	public:
 		GameConsole(SDL_Renderer *renderer);
 
-		bool add(std::string id, int x, int y);
+		bool add(std::string id, std::string x, std::string y);
 		void draw();
 
 		void previous(Games *games);

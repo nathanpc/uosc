@@ -46,7 +46,7 @@ GameConsole::GameConsole(SDL_Renderer *renderer) {
  *  @param y Sprite Y.
  *  @return True if everything worked fine.
  */
-bool GameConsole::add(string id, int x, int y) {
+bool GameConsole::add(string id, string x, string y) {
 	// Prepare the console properties map.
 	map<string, string> console;
 	console["x"] = x;
@@ -81,7 +81,11 @@ void GameConsole::draw() {
 			x += 5;
 		}
 
-		m_pTextureManager->draw("all", m_mConsoles[m_vIDs[i]]["x"], m_mConsoles[m_vIDs[i]]["y"], x + (spacing * i) - midpoint, m_ypos, m_width, m_height);
+		m_pTextureManager->draw("all",
+								atoi(m_mConsoles[m_vIDs[i]]["x"].c_str()),
+								atoi(m_mConsoles[m_vIDs[i]]["y"].c_str()),
+								x + (spacing * i) - midpoint, m_ypos,
+								m_width, m_height);
 	}
 }
 

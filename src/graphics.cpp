@@ -91,7 +91,7 @@ bool Graphics::populate_values() {
 	map<string, map<string, string> > emulators = m_pConfig->emulators();
 	for (auto it = emulators.begin(); it != emulators.end(); ++it) {
 		// Add game console.
-		if (!m_pGameConsole->add(it->first, atoi(it->second["x"].c_str()), atoi(it->second["y"].c_str()))) {
+		if (!m_pGameConsole->add(it->first, it->second["x"], it->second["y"])) {
 			cout << "Error while populating game consoles: (" << it->first << ") " << it->second["icon"] << endl;
 			return false;
 		}
@@ -134,7 +134,7 @@ bool Graphics::populate_values() {
  */
 void Graphics::update() {
 	// Set to black.
-	SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(m_pRenderer, 240, 240, 240, 255);
 }
 
 /**

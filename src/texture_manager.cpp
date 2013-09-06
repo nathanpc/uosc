@@ -67,7 +67,7 @@ void TextureManager::draw(string id, int sx, int sy, int x, int y, unsigned int 
 	SDL_QueryTexture(m_mTextures[id], NULL, NULL, &source.w, &source.h);
 
 	// Set the positions and sizes for everything.
-	source.x = sx * 38;
+	source.x = sx * 37;
 	source.y = sy * 38;
 	source.w = 36;
 	source.h = 38;
