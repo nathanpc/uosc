@@ -14,6 +14,8 @@
 #include "window_properties.h"
 using namespace std;
 
+#define VERSION "0.1a"
+
 Graphics *g_graphics = 0;
 
 /**
@@ -27,9 +29,13 @@ int main(int argc, char *argv[]) {
 	// Setup our FPS limiting variables.
 	uint32_t frame_start, frame_time;
 
+	// Create the window title.
+	string title = "The Ultimate Old School Console v";
+	title += VERSION;;
+
 	// Initialize SDL.
 	g_graphics = new Graphics();
-	g_graphics->g_bRunning = g_graphics->init("The Ultimate Old School Console",
+	g_graphics->g_bRunning = g_graphics->init(title.c_str(),
 											  SDL_WINDOWPOS_CENTERED,
 											  SDL_WINDOWPOS_CENTERED,
 											  WindowProperty::width,

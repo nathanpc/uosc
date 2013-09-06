@@ -54,6 +54,8 @@ Graphics::~Graphics() {
  *  @return True if everything initialized corrrectly.
  */
 bool Graphics::init(const char *title, int x, int y, int width, int height, int flags) {
+	cout << "Initializing SDL" << endl;
+
 	// Initialize SDL.
 	int sdl_init_status = SDL_Init(SDL_INIT_EVERYTHING);
 	if (sdl_init_status >= 0) {
@@ -89,6 +91,9 @@ bool Graphics::init(const char *title, int x, int y, int width, int height, int 
  */
 bool Graphics::populate_values() {
 	map<string, map<string, string> > emulators = m_pConfig->emulators();
+
+	cout << "Populating the games and emulators" << endl;
+
 	for (auto it = emulators.begin(); it != emulators.end(); ++it) {
 		// Add game console.
 		if (!m_pGameConsole->add(it->first, it->second["x"], it->second["y"])) {
