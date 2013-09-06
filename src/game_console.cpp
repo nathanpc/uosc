@@ -9,6 +9,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <cstdlib>
 
 #include "texture_manager.h"
 #include "game_console.h"
@@ -23,33 +24,37 @@ GameConsole::GameConsole(SDL_Renderer *renderer) {
 	// Initialize the TextureManager.
 	m_pTextureManager = new TextureManager(renderer);
 
+	// Load the texture.
+	if (!m_pTextureManager->load("all", "assets/consoles.png")) {
+		cout << "Couldn't load image: assets/consoles.png" << endl;
+		exit(EXIT_FAILURE);
+	}
+
 	// Set the defaults.
 	m_width = 100;
 	m_height = 100;
 	m_ypos = (WindowProperty::height / 3.5) - (m_height / 2);
 	m_selected = 0;
+	x = (WindowProperty::width / 2) - (m_width / 2);
 }
 
 /**
  *  Adds a game console.
  *
  *  @param id Game console ID.
- *  @return True if everything works fine.
+ *  @param x Sprite X.
+ *  @param y Sprite Y.
+ *  @return True if everything worked fine.
  */
-bool GameConsole::add(string id, string logo) {
+bool GameConsole::add(string id, int x, int y) {
 	// Prepare the console properties map.
 	map<string, string> console;
-	console["filename"] = logo;
+	console["sprite_x"] = x;
+	console["sprite_y"] = y;
 
 	// Add.
 	m_mConsoles[id] = console;
 	m_vIDs.push_back(id);
-
-	// Load the texture.
-	if (!m_pTextureManager->load(id, console["filename"])) {
-		cout << "Couldn't load image: " << console["filename"] << endl;
-		return false;
-	}
 
 	return true;
 }
@@ -65,18 +70,18 @@ void GameConsole::draw() {
 	}
 
 	// Some position variables.
-	unsigned int x = 0;
 	const unsigned int spacing = WindowProperty::width / 3;
 	unsigned int midpoint = (spacing / 2) - (m_width / 2);
 
-	// Center the selected item.
-	x -= spacing * (m_selected - 1);
-
 	// Icon loop.
-	for (size_t i = 0; i < m_vIDs.size(); ++i) {//max_icons; ++i) {
-		m_pTextureManager->draw(m_vIDs[i], x + midpoint, m_ypos, m_width, m_height);
+	for (size_t i = 0; i < m_vIDs.size(); ++i) {
+		if (x + (spacing * m_selected) > WindowProperty::width / 2) {
+			x -= 5;
+		} else if (x + (spacing * m_selected) < WindowProperty::width / 2) {
+			x += 5;
+		}
 
-		x += spacing;
+		m_pTextureManager->draw("all", i, i, x + (spacing * i) - midpoint, m_ypos, m_width, m_height);
 	}
 }
 

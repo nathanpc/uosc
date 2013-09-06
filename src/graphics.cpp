@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <cstdlib>
 #include <SDL.h>
 #include <boost/filesystem.hpp>
 
@@ -90,7 +91,7 @@ bool Graphics::populate_values() {
 	map<string, map<string, string> > emulators = m_pConfig->emulators();
 	for (auto it = emulators.begin(); it != emulators.end(); ++it) {
 		// Add game console.
-		if (!m_pGameConsole->add(it->first, it->second["icon"])) {
+		if (!m_pGameConsole->add(it->first, atoi(it->second["x"].c_str()), atoi(it->second["y"].c_str()))) {
 			cout << "Error while populating game consoles: (" << it->first << ") " << it->second["icon"] << endl;
 			return false;
 		}

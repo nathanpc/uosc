@@ -3,13 +3,19 @@
 emulators:
   - id: gba
     name: GameBoy Advance
-    icon: "assets/gameboy.png"
+    icon:
+      filename: "assets/gameboy.png"
+      x: 10
+      y: 10
     exec: "vba {rom}"
     roms: "/home/nathanpc/ROMs/GameBoy/"
     ignore_ext: ".sav"
   - id: genesis
     name: Sega Genesis
-    icon: "assets/psone.png"
+    icon:
+      filename: "assets/psone.png"
+      x: 3
+      y: 3
     exec: "dgen {rom}"
     roms: "/home/nathanpc/ROMs/Genesis/"
 

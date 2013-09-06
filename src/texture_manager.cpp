@@ -52,12 +52,14 @@ bool TextureManager::load(string id, string file) {
  *  Draws a texture.
  *
  *  @param id The texture ID.
+ *  @param sx Source X position.
+ *  @param sy Source Y postition.
  *  @param x Texture X position.
  *  @param y Texture Y position.
  *  @param width Texture width.
  *  @param height Texture height.
  */
-void TextureManager::draw(string id, int x, int y, unsigned int width, unsigned int height) {
+void TextureManager::draw(string id, int sx, int sy, int x, int y, unsigned int width, unsigned int height) {
 	SDL_Rect source;
 	SDL_Rect destination;
 
@@ -65,8 +67,10 @@ void TextureManager::draw(string id, int x, int y, unsigned int width, unsigned 
 	SDL_QueryTexture(m_mTextures[id], NULL, NULL, &source.w, &source.h);
 
 	// Set the positions and sizes for everything.
-	source.x = 0;
-	source.y = 0;
+	source.x = sx * 38;
+	source.y = sy * 38;
+	source.w = 36;
+	source.h = 38;
 	destination.x = x;
 	destination.y = y;
 	destination.w = width;
@@ -74,4 +78,17 @@ void TextureManager::draw(string id, int x, int y, unsigned int width, unsigned 
 
 	// Copy the texture to the render buffer.
 	SDL_RenderCopy(m_pRenderer, m_mTextures[id], &source, &destination);
+}
+
+/**
+ *  Draws a texture.
+ *
+ *  @param id The texture ID.
+ *  @param x Texture X position.
+ *  @param y Texture Y position.
+ *  @param width Texture width.
+ *  @param height Texture height.
+ */
+void TextureManager::draw(string id, int x, int y, unsigned int width, unsigned int height) {
+	draw(id, 0, 0, x, y, width, height);
 }

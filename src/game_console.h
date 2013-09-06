@@ -22,6 +22,7 @@ class GameConsole {
 		std::map<std::string, std::map<std::string, std::string> > m_mConsoles;
 		std::vector<std::string> m_vIDs;
 		unsigned int m_selected;
+		unsigned int x;
 
 		unsigned int m_ypos;
 		unsigned int m_width;
@@ -30,7 +31,7 @@ class GameConsole {
 	public:
 		GameConsole(SDL_Renderer *renderer);
 
-		bool add(std::string id, std::string logo);
+		bool add(std::string id, int x, int y);
 		void draw();
 
 		void previous(Games *games);
