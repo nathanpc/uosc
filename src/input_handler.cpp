@@ -69,7 +69,7 @@ void InputHandler::on_key_down() {
 		m_pGameConsole->next(m_pGames);
 	} else if (is_key_down(SDL_SCANCODE_UP)) {
 		// Up
-		m_pGames->previous();
+		m_pGames->previous(m_pGameConsole->get_selected_id());
 	} else if (is_key_down(SDL_SCANCODE_DOWN)) {
 		// Down
 		m_pGames->next(m_pGameConsole->get_selected_id());

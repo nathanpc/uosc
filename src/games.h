@@ -33,7 +33,7 @@ class Games {
 		bool add(std::string console, std::string emulator, std::vector<std::string> games);
 		void draw(std::string console);
 
-		void previous();
+		void previous(std::string console);
 		void next(std::string console);
 		void reset_selected();
 

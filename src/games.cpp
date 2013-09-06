@@ -59,11 +59,13 @@ void Games::draw(string console) {
 
 	// List loop.
 	for (size_t i = 0; i < m_mGames[console].size(); ++i) {
-		// Animate up and down.
-		if (y + (spacing * m_selected) > m_ypos) {
-			y -= 5;
-		} else if (y + (spacing * m_selected) < m_ypos) {
-			y += 5;
+		if (y > 0) {
+			// Animate up and down.
+			if (y + (spacing * m_selected) > m_ypos) {
+				y -= 5;
+			} else if (y + (spacing * m_selected) < m_ypos) {
+				y += 5;
+			}
 		}
 
 		// TODO: Make the top one fade instead of just vanishing.
@@ -75,6 +77,10 @@ void Games::draw(string console) {
 
 			// Print.
 			m_pText->print(title, color, 0, y + (spacing * i), true);
+
+			#ifdef DEBUG
+			cout << "Y Position: " << (y + (spacing * i)) << endl;
+			#endif
 		}
 	}
 }
@@ -82,13 +88,13 @@ void Games::draw(string console) {
 /**
  *  Select the previous game.
  */
-void Games::previous() {
+void Games::previous(string console) {
 	if (m_selected > 0) {
 		m_selected--;
 	}
 
 	#ifdef DEBUG
-	cout << "Console selected: " << m_vIDs[m_selected] << endl;
+	cout << "Game selected: " << m_mGames[console][m_selected] << endl;
 	#endif
 }
 
@@ -110,6 +116,7 @@ void Games::next(string console) {
  */
 void Games::reset_selected() {
 	m_selected = 0;
+	y = m_ypos;
 }
 
 /**
