@@ -73,13 +73,14 @@ void GameConsole::draw() {
 	// Icon loop.
 	for (size_t i = 0; i < m_vIDs.size(); ++i) {
 		int cpos = (WindowProperty::width / 2) - (grid * m_selected) + midpoint - (m_width / 2);
+		unsigned int velocity = 8;
 
 		if (x > cpos) {
 			// Left.
-			x -= 5;
+			x -= velocity;
 		} else if (x < cpos) {
 			// Right.
-			x += 5;
+			x += velocity;
 		}
 
 		m_pTextureManager->draw("all",
