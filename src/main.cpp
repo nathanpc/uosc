@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include <cstdint>
+#include <unistd.h>
 #include <SDL.h>
 
 #include "graphics.h"
@@ -26,12 +27,25 @@ Graphics *g_graphics = 0;
  *  @return Exit code.
  */
 int main(int argc, char *argv[]) {
+	char arg;
+	int fullscreen = SDL_WINDOW_FULLSCREEN;
+
+	// Parse arguments.
+	while ((arg = getopt (argc, argv, "w")) != -1) {
+		switch (arg) {
+		case 'w':
+			// Windowed mode.
+			fullscreen = 0;
+			break;
+		}
+	}
+
 	// Setup our FPS limiting variables.
 	uint32_t frame_start, frame_time;
 
 	// Create the window title.
 	string title = "The Ultimate Old School Console v";
-	title += VERSION;;
+	title += VERSION;
 
 	// Initialize SDL.
 	g_graphics = new Graphics();
@@ -41,7 +55,8 @@ int main(int argc, char *argv[]) {
 											  WindowProperty::width,
 											  WindowProperty::height,
 											  SDL_WINDOW_RESIZABLE |
-											  SDL_WINDOW_SHOWN);
+											  SDL_WINDOW_SHOWN |
+											  fullscreen);
 
 	// Check if the initialization was successful.
 	if (!g_graphics->g_bRunning) {
