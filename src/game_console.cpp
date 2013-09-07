@@ -31,11 +31,8 @@ GameConsole::GameConsole(SDL_Renderer *renderer) {
 	}
 
 	// Set the defaults.
-	m_width = 100;
-	m_height = 100;
-	m_ypos = (WindowProperty::height / 3.5) - (m_height / 2);
+	refresh_pos();
 	m_selected = 0;
-	x = (WindowProperty::width / 2) - (m_width / 2);
 }
 
 /**
@@ -70,21 +67,25 @@ void GameConsole::draw() {
 	}
 
 	// Some position variables.
-	const unsigned int spacing = WindowProperty::width / 3;
-	unsigned int midpoint = (spacing / 2) - (m_width / 2);
+	const unsigned int grid = WindowProperty::width / 3;
+	unsigned int midpoint = (grid / 2) - (m_width / 2);
 
 	// Icon loop.
 	for (size_t i = 0; i < m_vIDs.size(); ++i) {
-		if (x + (spacing * m_selected) > WindowProperty::width / 2) {
+		int cpos = (WindowProperty::width / 2) - (grid * m_selected) + midpoint - (m_width / 2);
+
+		if (x > cpos) {
+			// Left.
 			x -= 5;
-		} else if (x + (spacing * m_selected) < WindowProperty::width / 2) {
+		} else if (x < cpos) {
+			// Right.
 			x += 5;
 		}
 
 		m_pTextureManager->draw("all",
 								atoi(m_mConsoles[m_vIDs[i]]["x"].c_str()),
 								atoi(m_mConsoles[m_vIDs[i]]["y"].c_str()),
-								x + (spacing * i) - midpoint, m_ypos,
+								x + (grid * i) - midpoint, m_ypos,
 								m_width, m_height);
 	}
 }
@@ -115,6 +116,16 @@ void GameConsole::next(Games *games) {
 	#ifdef DEBUG
 	cout << "Console selected: " << m_vIDs[m_selected] << endl;
 	#endif
+}
+
+/**
+ *  Refresh the main positions (for resizing).
+ */
+void GameConsole::refresh_pos() {
+	m_width = 100;
+	m_height = 100;
+	m_ypos = (WindowProperty::height / 3.5) - (m_height / 2);
+	x = (WindowProperty::width / 2) - (m_width / 2);
 }
 
 /**

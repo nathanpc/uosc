@@ -22,7 +22,7 @@ class GameConsole {
 		std::map<std::string, std::map<std::string, std::string> > m_mConsoles;
 		std::vector<std::string> m_vIDs;
 		unsigned int m_selected;
-		unsigned int x;
+		int x;
 
 		unsigned int m_ypos;
 		unsigned int m_width;
@@ -36,6 +36,8 @@ class GameConsole {
 
 		void previous(Games *games);
 		void next(Games *games);
+
+		void refresh_pos();
 
 		std::string get_selected_id();
 };

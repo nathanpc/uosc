@@ -24,10 +24,8 @@ Games::Games(SDL_Renderer *renderer) {
 	m_pText = new Text("assets/Minecraftia.ttf", 20, renderer);
 
 	// Set the defaults.
-	m_height = 100;
-	m_ypos = (WindowProperty::height / 3.5) + 50;
+	refresh_pos();
 	m_selected = 0;
-	y = m_ypos;
 }
 
 /**
@@ -116,6 +114,15 @@ void Games::next(string console) {
  */
 void Games::reset_selected() {
 	m_selected = 0;
+	y = m_ypos;
+}
+
+/**
+ *  Refresh the main positions (for resizing).
+ */
+void Games::refresh_pos() {
+	m_height = 100;
+	m_ypos = (WindowProperty::height / 3.5) + 50;
 	y = m_ypos;
 }
 

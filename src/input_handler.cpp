@@ -30,18 +30,23 @@ bool InputHandler::update() {
 	m_keystates = SDL_GetKeyboardState(0);
 	SDL_Event event;
 
-	if (SDL_PollEvent(&event)) {
-		switch (event.type) {
-			case SDL_QUIT:
-				return false;
-			break;
+	while (SDL_PollEvent(&event)) {
+		if (event.type == SDL_QUIT) {
+			return false;
+		} else if (event.type == SDL_KEYDOWN) {
+			on_key_down();
+		} else if (event.type == SDL_WINDOWEVENT) {
+			switch (event.window.event) {
+			case SDL_WINDOWEVENT_RESIZED:
+				SDL_Log("Window %d resized to %dx%d",
+						event.window.windowID, event.window.data1,
+						event.window.data2);
 
-			case SDL_KEYDOWN:
-				on_key_down();
-			break;
-
-			default:
-			break;
+				WindowProperty::resize(event.window.data1, event.window.data2);
+				m_pGameConsole->refresh_pos();
+				m_pGames->refresh_pos();
+				break;
+			}
 		}
 	}
 

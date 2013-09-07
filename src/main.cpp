@@ -40,6 +40,7 @@ int main(int argc, char *argv[]) {
 											  SDL_WINDOWPOS_CENTERED,
 											  WindowProperty::width,
 											  WindowProperty::height,
+											  SDL_WINDOW_RESIZABLE |
 											  SDL_WINDOW_SHOWN);
 
 	// Check if the initialization was successful.
