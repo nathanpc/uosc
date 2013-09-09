@@ -77,6 +77,45 @@ Finally let's install UOSC, it's the easiest one:
 	sudo make install
 
 
+## Configuring
+
+UOSC's configuration file is written in YAML, which means it's extremely human-friendly, but I decided to help you a bit to understand how to populate the file with your desired emulators. Let's start with an example and the go through it line-by-line:
+
+```yml
+---
+
+emulators:
+  - id: gba
+    name: GameBoy Advance
+    icon:
+      x: 7
+      y: 4
+    exec: "vba {rom}"
+    roms: "/home/nathanpc/ROMs/GameBoy/"
+    ignore_ext: ".sav"
+  - id: genesis
+    name: Sega Genesis
+    icon:
+      x: 8
+      y: 25
+    exec: "dgen {rom}"
+    roms: "/home/nathanpc/ROMs/Genesis/"
+
+...
+```
+
+First we have a list of the emulators that UOSC should know about. Each emulator contains the following required attributes:
+
+  - `id`: A unique identifier, which will be used internally to identify each emulator
+  - `name`: A descriptive name
+  - `icon`: This where we'll put the information about the console icon
+    - `x`: The row of the icon in the `assets/console.png` file
+    - `y`: The collumn of the icon in the `assets/console.png` file
+  - `exec`: The command that should be executed to launch the emulator. `{rom}` will indicate where UOSC should insert the ROM file in the command
+  - `roms`: Where UOSC should look to index the roms
+  - `ignore_ext`: This specifies which extensions UOSC should ignore (save files for example) when indexing the ROMs folder
+
+
 ## The End
 
-Yup, that's all folks. Now you have UOSC installed in your system.
+Yup, that's all folks. Now you have UOSC installed and configured in your system.
