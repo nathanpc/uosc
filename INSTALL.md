@@ -60,3 +60,16 @@ Now download [yaml-cpp 0.5.1.tar.gz](http://yaml-cpp.googlecode.com/files/yaml-c
 	cmake -DBUILD_SHARED_LIBS=ON ..
 	make
 	sudo make install
+
+
+## UOSC
+
+Finally let's install UOSC, it's the easiest one:
+
+    make
+	sudo make install
+
+
+## The End
+
+Yup, that's all folks. Now you have UOSC installed in your system.

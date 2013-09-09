@@ -25,4 +25,4 @@ install: build
 	sudo install ./$(NAME) $(PREFIX)
 
 uninstall:
-	sudo rm -f $(PREFIX)/$(NAME)
+	sudo rm $(PREFIX)/$(NAME)
