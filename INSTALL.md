@@ -22,6 +22,7 @@ Let's begin with the core library, download [SDL2-2.0.0.tar.gz](http://www.libsd
     ./configure
 	make
 	sudo make install
+	make ldconfig
 
 ### SDL2_image
 
@@ -30,11 +31,32 @@ UOSC uses the official SDL_image library to display images on the screen. Downlo
     ./configure
 	make
 	sudo make install
+	make ldconfig
 
 ### SDL2_ttf
 
-We need to display text on th screen. Again, download [SDL2_ttf-2.0.12.tar.gz](http://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.12.tar.gz), unoack the archive and execute the usual commands:
+We need to display text on th screen. Again, download [SDL2_ttf-2.0.12.tar.gz](http://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.12.tar.gz), unpack the archive and execute the usual commands:
 
     ./configure
+	make
+	sudo make install
+	make ldconfig
+
+
+## yaml-cpp
+
+UOSC's configuration files are written in [YAML](http://www.yaml.org/) and the best library available for C++ is yaml-cpp.
+
+### Dependencies
+
+yaml-cpp uses [CMake](http://www.cmake.org/), so we have to install it. In a Debian-based distro:
+
+    sudo apt-get install cmake
+
+Now download [yaml-cpp 0.5.1.tar.gz](http://yaml-cpp.googlecode.com/files/yaml-cpp-0.5.1.tar.gz), unpack the archive and execute the following commands:
+
+    mkdir build
+	cd build
+	cmake -DBUILD_SHARED_LIBS=ON ..
 	make
 	sudo make install
