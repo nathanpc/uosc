@@ -57,20 +57,35 @@ gcube_orange	11 24
 gcube_grey		12 2
 gcube_purple	12 5
 
-[PSOne]
+[PlayStation 1]
 ps1_logo		9  14
+ps1_old			14 4
+ps1				15 16
 
 [XBOX]
 xb_logo_white	9  17
 xb_logo			9  18
 xb360_logo		9  19
+xb				19 14
+xb360			19 15
 
 [NES]
 nes				11 17
 
 [Nintendo DS]
-ds				11 15
-ds_pink			11 17
-ds_white		11 18
-ds_red			11 19
-ds_blue			11 20
+ds				12 15
+ds_pink			12 17
+ds_white		12 18
+ds_red			12 19
+ds_blue			12 20
+
+[PlayStation 2]
+ps2				14 8
+ps2_white		14 9
+ps2_pink		14 10
+
+[PlayStation 3]
+ps3				14 27
+
+[PSP]
+psp				15 20
