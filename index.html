@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>UOSC by nathanpc</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>UOSC</h1>
+        <h2>The ultimate old school console</h2>
+        <a href="https://github.com/nathanpc/uosc" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h1>
+
+<p>Of course this project has some requirements...</p>
+
+<ul>
+<li><a href="http://libsdl.org/">SDL 2.0</a></li>
+<li><a href="http://www.libsdl.org/tmp/SDL_image/">SDL2_Image 2.0</a></li>
+<li><a href="http://www.libsdl.org/tmp/SDL_ttf/">SDL2_TTF 2.0</a></li>
+<li><a href="https://code.google.com/p/yaml-cpp/">yaml-cpp</a></li>
+<li><a href="http://www.boost.org/doc/libs/1_54_0/libs/filesystem/doc/index.htm">Boost Filesystem</a></li>
+</ul><h1>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>For detailed instructions on how to install UOSC please read the <a href="https://github.com/nathanpc/uosc/blob/master/INSTALL.md">INSTALL.md</a> document.</p>
+
+<h1>
+<a name="configuring" class="anchor" href="#configuring"><span class="octicon octicon-link"></span></a>Configuring</h1>
+
+<p>UOSC's configuration file is written in YAML, which means it's extremely human-friendly, but I decided to help you a bit to understand how to populate the file with your desired emulators. Let's start with an example and the go through it line-by-line:</p>
+
+<div class="highlight highlight-yml"><pre><span class="nn">---</span>
+
+<span class="l-Scalar-Plain">emulators</span><span class="p-Indicator">:</span>
+  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">gba</span>
+    <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">GameBoy Advance</span>
+    <span class="l-Scalar-Plain">icon</span><span class="p-Indicator">:</span>
+      <span class="l-Scalar-Plain">x</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">7</span>
+      <span class="l-Scalar-Plain">y</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">4</span>
+    <span class="l-Scalar-Plain">exec</span><span class="p-Indicator">:</span> <span class="s">"vba</span><span class="nv"> </span><span class="s">{rom}"</span>
+    <span class="l-Scalar-Plain">roms</span><span class="p-Indicator">:</span> <span class="s">"/home/nathanpc/ROMs/GameBoy/"</span>
+    <span class="l-Scalar-Plain">ignore_ext</span><span class="p-Indicator">:</span> <span class="s">".sav"</span>
+  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">genesis</span>
+    <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Sega Genesis</span>
+    <span class="l-Scalar-Plain">icon</span><span class="p-Indicator">:</span>
+      <span class="l-Scalar-Plain">x</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">8</span>
+      <span class="l-Scalar-Plain">y</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">25</span>
+    <span class="l-Scalar-Plain">exec</span><span class="p-Indicator">:</span> <span class="s">"dgen</span><span class="nv"> </span><span class="s">{rom}"</span>
+    <span class="l-Scalar-Plain">roms</span><span class="p-Indicator">:</span> <span class="s">"/home/nathanpc/ROMs/Genesis/"</span>
+
+<span class="nn">...</span>
+</pre></div>
+
+<p>First we have a list of the emulators that UOSC should know about. Each emulator contains the following required attributes:</p>
+
+<ul>
+<li>
+<code>id</code>: A unique identifier, which will be used internally to identify each emulator</li>
+<li>
+<code>name</code>: A descriptive name</li>
+<li>
+<code>icon</code>: This where we'll put the information about the console icon
+
+<ul>
+<li>
+<code>x</code>: The row of the icon in the <code>assets/console.png</code> file</li>
+<li>
+<code>y</code>: The collumn of the icon in the <code>assets/console.png</code> file</li>
+</ul>
+</li>
+<li>
+<code>exec</code>: The command that should be executed to launch the emulator. <code>{rom}</code> will indicate where UOSC should insert the ROM file in the command</li>
+<li>
+<code>roms</code>: Where UOSC should look to index the roms</li>
+<li>
+<code>ignore_ext</code>: This specifies which extensions UOSC should ignore (save files for example) when indexing the ROMs folder</li>
+</ul><h1>
+<a name="screenshot" class="anchor" href="#screenshot"><span class="octicon octicon-link"></span></a>Screenshot</h1>
+
+<p>This is how awesome UOSC looks like:</p>
+
+<p><img src="http://screencloud.net/img/screenshots/52d39c33126feec597d5c12c669567cc.png" alt="A very simple example"></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/nathanpc/uosc/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/nathanpc/uosc/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/nathanpc/uosc"></a> is maintained by <a href="https://github.com/nathanpc">nathanpc</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-37990129-3");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
