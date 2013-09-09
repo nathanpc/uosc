@@ -29,7 +29,7 @@ map<string, map<string, string> > Config::emulators() {
 
 		// Populate the temp map.
 		tmp_emu["name"] = emulator["name"].as<string>();
-		tmp_emu["icon"] = emulator["icon"]["filename"].as<string>();
+		//tmp_emu["icon"] = emulator["icon"]["filename"].as<string>();
 		tmp_emu["x"]    = emulator["icon"]["x"].as<string>();
 		tmp_emu["y"]    = emulator["icon"]["y"].as<string>();
 		tmp_emu["exec"] = emulator["exec"].as<string>();
