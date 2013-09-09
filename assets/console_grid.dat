@@ -43,22 +43,34 @@ gbmicro_red		8  13
 gbmicro			8  14
 
 [NeoGeo]
-neogeo_logo		9  22
-nwogeo_faces	9  23
+neogeo_logo		9  9
+nwogeo_faces	9  10
 
 [Nintendo 64]
-n64_logo		9  24
-n64				10 24
+n64_logo		9  11
+n64				10 11
 
 [Game Cube]
-gcube_logo		9  25
+gcube_logo		9  12
+gcube			11 21
+gcube_orange	11 24
+gcube_grey		12 2
+gcube_purple	12 5
 
 [PSOne]
-ps1_logo		9  27
+ps1_logo		9  14
 
 [XBOX]
-xb_logo_white	9  30
-xb_logo			9  31
+xb_logo_white	9  17
+xb_logo			9  18
+xb360_logo		9  19
 
-[XBOX 360]
-xb360_logo		9  32
+[NES]
+nes				11 17
+
+[Nintendo DS]
+ds				11 15
+ds_pink			11 17
+ds_white		11 18
+ds_red			11 19
+ds_blue			11 20
