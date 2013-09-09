@@ -19,3 +19,8 @@ Of course this project has some requirements...
 This is how awesome UOSC looks like:
 
 ![A very simple example](http://screencloud.net/img/screenshots/52d39c33126feec597d5c12c669567cc.png)
+
+
+## Installation
+
+For detailed instructions on how to install UOSC please read the [INSTALL.md](https://github.com/nathanpc/uosc/blob/master/INSTALL.md) document.
