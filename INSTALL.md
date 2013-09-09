@@ -62,6 +62,13 @@ Now download [yaml-cpp 0.5.1.tar.gz](http://yaml-cpp.googlecode.com/files/yaml-c
 	sudo make install
 
 
+## Boost Filesystem
+
+Your distro probably have this library in the repos jugding by how popular it is, so let's install it:
+
+    sudo apt-get install libboost-filesystem1.53.0 libboost-filesystem1.53-dev
+
+
 ## UOSC
 
 Finally let's install UOSC, it's the easiest one:
