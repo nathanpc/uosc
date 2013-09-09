@@ -1,65 +1,64 @@
 [Misc]
-mame			0 4
-atari			0 5
-genesis			8 25
+mame			0  4
+atari			0  5
+genesis			8  25
 
 [GameBoy]
-gb				8 21
-gb_black		8 15
-gb_pink_trans	8 16
-gb_yellow		8 17
-gb_green		8 19
-gb_pink			8 20
-gb_red			8 21
+gb				8  21
+gb_black		8  15
+gb_pink_trans	8  16
+gb_yellow		8  17
+gb_green		8  19
+gb_pink			8  20
+gb_red			8  21
 
 [GameBoy Advance]
-gba_white		6 18
-gba_purple		6 21
-gba_blue		6 24
-gba_pink		6 26
-gba_silver		7 0
-gba_beige		7 2
-gba				7 4
-gba_black		7 4
-gba_orange		7 6
-gbasp_black		7 16
-gbasp_blue		7 18
-gbasp_white		7 20
-gbasp_grey		7 24
-gbasp_orange	7 26
-gbasp_silver	8 0
+gba_white		6  18
+gba_purple		6  21
+gba_blue		6  24
+gba_pink		6  26
+gba_silver		7  0
+gba_beige		7  2
+gba				7  4
+gba_black		7  4
+gba_orange		7  6
+gbasp_black		7  16
+gbasp_blue		7  18
+gbasp_white		7  20
+gbasp_grey		7  24
+gbasp_orange	7  26
+gbasp_silver	8  0
 
 [GameBoy Color]
-gbc_trans		8 6
-gbc				8 7
-gbc_purple		8 7
-gbc_red			8 8
-gbc_yellow		8 10
-gbc_white		8 11
-gbc_beige		8 12
+gbc_trans		8  6
+gbc				8  7
+gbc_purple		8  7
+gbc_red			8  8
+gbc_yellow		8  10
+gbc_white		8  11
+gbc_beige		8  12
 
 [GameBoy Micro]
-gbmicro_red		8 13
-gbmicro			8 14
+gbmicro_red		8  13
+gbmicro			8  14
 
 [NeoGeo]
-neogeo_logo		9 22
-nwogeo_faces	9 23
+neogeo_logo		9  22
+nwogeo_faces	9  23
 
 [Nintendo 64]
-n64_logo		9 24
+n64_logo		9  24
+n64				10 24
 
 [Game Cube]
-gcube_logo		9 25
+gcube_logo		9  25
 
 [PSOne]
-ps1_logo		9 27
+ps1_logo		9  27
 
 [XBOX]
-xb_logo_white	9 30
-xb_logo			9 31
+xb_logo_white	9  30
+xb_logo			9  31
 
 [XBOX 360]
-xb360_logo		9 32
-
-#### Continue from col 10
+xb360_logo		9  32
