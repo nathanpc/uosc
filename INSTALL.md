@@ -11,7 +11,7 @@ Let's begin by installing the SDL2 libraries. Probably your distro still haven't
 
 First and foremost we should install the dependencies for those libraries. If you're on a Debian-based system, just execute this apt-get:
 
-    sudo apt-get install libasound2-dev libcaca-dev libglu1-mesa-dev libpulse-dev libx11-dev libxext-dev multiarch-support libasound2 libcaca0 libpulse0 libx11-6 libxext6
+    sudo apt-get install libasound2-dev libcaca-dev libglu1-mesa-dev libpulse-dev libx11-dev libxext-dev multiarch-support libasound2 libcaca0 libpulse0 libx11-6 libxext6 libjpeg8 libpng12-0 libtiff5 libwebp4 libfreetype6
 
 If you're in another distro, just go to your distro's repo browser and install all the dependencies from the libsdl package.
 
