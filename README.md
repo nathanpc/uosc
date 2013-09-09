@@ -1,6 +1,6 @@
 # UOSC
 
-The ultimate old school console.
+The ultimate old school console. Think of this as a launcher, it's supposed to give you a "Big Picture"-like mode for enjoying your favorite old school games.
 
 
 ## Requirements

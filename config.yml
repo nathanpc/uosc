@@ -7,7 +7,7 @@ emulators:
       filename: "assets/gameboy.png"
       x: 7
       y: 4
-    exec: "vba {rom}"
+    exec: "vba --fullscreen {rom}"
     roms: "/home/nathanpc/ROMs/GameBoy/"
     ignore_ext: ".sav"
   - id: genesis
@@ -16,7 +16,7 @@ emulators:
       filename: "assets/psone.png"
       x: 8
       y: 25
-    exec: "dgen {rom}"
+    exec: "dgen -f {rom}"
     roms: "/home/nathanpc/ROMs/Genesis/"
 
 ...
