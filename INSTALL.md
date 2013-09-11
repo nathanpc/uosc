@@ -22,7 +22,6 @@ Let's begin with the core library, download [SDL2-2.0.0.tar.gz](http://www.libsd
     ./configure
 	make
 	sudo make install
-	make ldconfig
 
 ### SDL2_image
 
@@ -31,7 +30,6 @@ UOSC uses the official SDL_image library to display images on the screen. Downlo
     ./configure
 	make
 	sudo make install
-	make ldconfig
 
 ### SDL2_ttf
 
@@ -41,6 +39,13 @@ We need to display text on th screen. Again, download [SDL2_ttf-2.0.12.tar.gz](h
 	make
 	sudo make install
 	make ldconfig
+
+
+## Boost Libraries
+
+Your distro probably have this library collection in the repos jugding by how popular it is, so let's install it:
+
+    sudo apt-get install libboost1.50-all-dev
 
 
 ## yaml-cpp
@@ -62,19 +67,16 @@ Now download [yaml-cpp 0.5.1.tar.gz](http://yaml-cpp.googlecode.com/files/yaml-c
 	sudo make install
 
 
-## Boost Filesystem
-
-Your distro probably have this library in the repos jugding by how popular it is, so let's install it:
-
-    sudo apt-get install libboost-filesystem1.53.0 libboost-filesystem1.53-dev
-
-
 ## UOSC
 
 Finally let's install UOSC, it's the easiest one:
 
     make
 	sudo make install
+
+If you're on a Raspberry Pi or a machine that doesn't have clang++ execute the `make` command like this:
+
+    make CXX=g++ CXXSTD=c++0x
 
 
 ## Configuring
