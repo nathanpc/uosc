@@ -4,7 +4,6 @@ emulators:
   - id: gba
     name: GameBoy Advance
     icon:
-      filename: "assets/gameboy.png"
       x: 7
       y: 4
     exec: "vba --fullscreen {rom}"
@@ -13,7 +12,6 @@ emulators:
   - id: genesis
     name: Sega Genesis
     icon:
-      filename: "assets/psone.png"
       x: 8
       y: 25
     exec: "dgen -f {rom}"
