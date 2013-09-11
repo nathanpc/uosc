@@ -27,7 +27,7 @@ Graphics *g_graphics = 0;
  *  @return Exit code.
  */
 int main(int argc, char *argv[]) {
-	char arg;
+	int arg;
 	int fullscreen = SDL_WINDOW_FULLSCREEN;
 
 	// Parse arguments.
