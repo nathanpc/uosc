@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
 	int fullscreen = SDL_WINDOW_FULLSCREEN;
 
 	// Parse arguments.
-	while ((arg = getopt (argc, argv, "w")) != -1) {
+	while ((arg = getopt(argc, argv, "w")) != -1) {
 		switch (arg) {
 		case 'w':
 			// Windowed mode.
