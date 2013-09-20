@@ -20,13 +20,11 @@ while (my $line = <$datfile>) {
 		# Remove the brackets
 		$line =~ s/[\[\]]//g;
 
-		print "\n$line:\n";
+		print "</ul>\n<h2>$line:</h2>\n<ul>\n";
 	} elsif ($line =~ /([\w]+)(\s+)([0-9]+\s+[0-9]+)/) {
 		# Parse the fields.
 		my ($id, $col, $row) = $line =~ /[\w]+/g;
-		print "  - $id ($col, $row)\n";
-
-		print Dumper("36x38+" . $col * 37.1 . "+" . $row * 38);
+		print "<li><img src=\"sprites/$id.png\" /> ID: $id - X: $col - Y: $row</li>\n";
 
 		# Open the image.
 		my $image_filename = "../assets/consoles.png";
